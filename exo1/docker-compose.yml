@@ -1,0 +1,17 @@
+---
+version: '2'
+services:
+  pyapp:
+    build: python
+    image: python_flask2
+    ports: 
+      - "7555:80"
+  web:
+    build: website
+    image: website2
+    volumes:
+      - ./php_share:/var/www/html/
+    ports:
+      - "5555:80"
+    links:
+      - pyapp
